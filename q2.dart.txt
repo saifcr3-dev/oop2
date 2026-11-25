@@ -1,0 +1,93 @@
+task 2 
+class Person {
+  String name = "";
+  String address = "";
+
+  void printPerson() {
+    print(name + "(" + address + ")");
+  }
+}
+
+class Student extends Person {
+  int numCourses = 0;
+  List<String> courses = [];
+  List<int> grades = [];
+
+  void printStudent() {
+    print("Student: " + name + "(" + address + ")");
+  }
+
+  void addCourseGrade(String course, int grade) {
+    courses.add(course);
+    grades.add(grade);
+    numCourses = numCourses + 1;
+  }
+
+  void printGrades() {
+    for (int i = 0; i < courses.length; i++) {
+      print(courses[i] + ": " + grades[i].toString());
+    }
+  }
+
+  double getAverageGrades() {
+    if (grades.length == 0) {
+      return 0;
+    }
+    int sum = 0;
+    for (int i = 0; i < grades.length; i++) {
+      sum = sum + grades[i];
+    }
+    return sum / grades.length;
+  }
+}
+
+class Teacher extends Person {
+  int numCourses = 0;
+  List<String> courses = [];
+
+  void printTeacher() {
+    print("Teacher: " + name + "(" + address + ")");
+  }
+
+  bool addCourse(String course) {
+    for (int i = 0; i < courses.length; i++) {
+      if (courses[i] == course) {
+        return false;
+      }
+    }
+    courses.add(course);
+    numCourses = numCourses + 1;
+    return true;
+  }
+
+  bool removeCourse(String course) {
+    for (int i = 0; i < courses.length; i++) {
+      if (courses[i] == course) {
+        courses.removeAt(i);
+        numCourses = numCourses - 1;
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+void main() {
+  Student s = Student();
+  s.name = "Omar";
+  s.address = "Nasr City";
+  s.printStudent();
+  s.addCourseGrade("Math", 85);
+  s.addCourseGrade("Science", 95);
+  s.printGrades();
+  print(s.getAverageGrades());
+
+  Teacher t = Teacher();
+  t.name = "Heba";
+  t.address = "Maadi";
+  t.printTeacher();
+  print(t.addCourse("Dart"));
+  print(t.addCourse("Dart"));
+  print(t.removeCourse("Dart"));
+  print(t.removeCourse("Dart"));
+}
