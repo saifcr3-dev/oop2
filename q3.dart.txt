@@ -1,0 +1,60 @@
+task 3
+class Shape {
+  String color = "";
+
+  void printColor() {
+    print("Color: " + color);
+  }
+}
+
+class Rectangle extends Shape {
+  int length = 0;
+  int width = 0;
+
+  double getArea() {
+    return (length * width) * 1.0;
+  }
+
+  void printRectangle() {
+    print("Rectangle: color = " +
+        color +
+        ", length = " +
+        length.toString() +
+        ", width = " +
+        width.toString());
+  }
+}
+
+class Triangle extends Shape {
+  int base = 0;
+  int height = 0;
+
+  double getArea() {
+    return (base * height) / 2;
+  }
+
+  void printTriangle() {
+    print("Triangle: color = " +
+        color +
+        ", base = " +
+        base.toString() +
+        ", height = " +
+        height.toString());
+  }
+}
+
+void main() {
+  Rectangle r = Rectangle();
+  r.color = "red";
+  r.length = 5;
+  r.width = 3;
+  r.printRectangle();
+  print(r.getArea());
+
+  Triangle t = Triangle();
+  t.color = "yellow";
+  t.base = 6;
+  t.height = 4;
+  t.printTriangle();
+  print(t.getArea());
+}
