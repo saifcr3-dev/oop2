@@ -1,0 +1,85 @@
+FIRST TASK
+
+class GeometricObject {
+  String color = "white";
+  bool filled = false;
+
+  void printInfo() {
+    print("color: " + color + ", filled: " + filled.toString());
+  }
+}
+
+class Triangle extends GeometricObject {
+  double side1 = 1.0;
+  double side2 = 1.0;
+  double side3 = 1.0;
+
+  double getPerimeter() {
+    return side1 + side2 + side3;
+  }
+
+  double getArea() {
+    double s = getPerimeter() / 2;
+    double areaSq = s * (s - side1) * (s - side2) * (s - side3);
+    double guess = areaSq / 2;
+    if (guess <= 0) {
+      return 0;
+    }
+    for (int i = 0; i < 20; i++) {
+      guess = (guess + areaSq / guess) / 2;
+    }
+    return guess;
+  }
+
+  void printTriangle() {
+    print("Triangle: side1 = " +
+        side1.toString() +
+        ", side2 = " +
+        side2.toString() +
+        ", side3 = " +
+        side3.toString());
+  }
+}
+
+class Rectangle extends GeometricObject {
+  double height = 1.0;
+  double width = 1.0;
+
+  double getArea() {
+    return width * height;
+  }
+
+  double getPerimeter() {
+    return 2 * (width + height);
+  }
+
+  void printRectangle() {
+    print("Rectangle: height = " +
+        height.toString() +
+        ", width = " +
+        width.toString());
+  }
+}
+
+void main() {
+  Triangle t = Triangle();
+  t.color = "green";
+  t.filled = true;
+  t.side1 = 3.0;
+  t.side2 = 4.0;
+  t.side3 = 5.0;
+  t.printInfo();
+  t.printTriangle();
+  print(t.getPerimeter());
+  print(t.getArea());
+
+  Rectangle r = Rectangle();
+  r.color = "blue";
+  r.filled = false;
+  r.width = 4.0;
+  r.height = 6.0;
+  r.printInfo();
+  r.printRectangle();
+  print(r.getPerimeter());
+  print(r.getArea());
+}
